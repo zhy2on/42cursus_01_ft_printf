@@ -12,8 +12,7 @@
 
 #include "ft_printf.h"
 
-
-static t_flags	treat_flags(va_list ap, t_flags fl)
+static t_flags	ft_treat_flags(va_list ap, t_flags fl)
 {
 	int	j;
 
@@ -21,7 +20,7 @@ static t_flags	treat_flags(va_list ap, t_flags fl)
 	while (fl.set[j] && ft_strchr)
 }
 
-static void	get_specs(va_list ap, const char *format, int *len, int *i)
+static void	ft_parse(va_list ap, const char *format, int *len, int *i)
 {
 	t_info	fl;
 	
@@ -52,7 +51,7 @@ int	ft_printf(const char *format, ...)
 		else
 		{
 			i++;
-			get_specs(args, format, &len, &i);
+			ft_parse(args, format, &len, &i);
 			if (len == -1)
 				return (-1);
 		}

@@ -5,40 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jihoh <jihoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/04 15:09:34 by jihoh             #+#    #+#             */
-/*   Updated: 2021/07/04 15:10:07 by jihoh            ###   ########.fr       */
+/*   Created: 2021/07/16 16:26:02 by jihoh             #+#    #+#             */
+/*   Updated: 2021/07/16 16:27:04 by jihoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
+# include <stdarg.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdarg.h>
-# include <stdint.h>
+# include "./libft/includes/libft.h"
 
-# define FLAGS "-+#0 "
-# define ALL_FLAGS "-+#0 *.0123456789lh"
-# define SPECS "cspdiuxX%onfge"
+# define SPECS "csdiupxX%"
 
 typedef struct s_info
 {
-	char	set[20];
-	char	spe_c;
-	char	pad_c;
-	char	minus;
-	char	plus;
-	char	hash;
-	char	space;
+	int		minus;
+	int		zero;
 	int		width;
-	char	point;
-	int		precision;
-	int		length;
-
-}				t_info;
-
-/*
-** ft_printf_utils.c
-*/
-int	ft_is_in_str(char *s, char c);
+	int		prec;
+	char	type;
+	int		nbr_base;
+	int		nbr_sign;
+}			t_info;
