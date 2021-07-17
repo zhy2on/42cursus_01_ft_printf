@@ -17,9 +17,9 @@ void	check_width_and_prec(va_list ap, char *format, t_info *info, int i)
 	if (ft_isdigit(format[i]))
 	{
 		if (info->prec == -1)
-			info->width = info->width * 10 + format[i] - 48;
+			info->width = info->width * 10 + format[i] - '0';
 		else
-			info->prec = info->prec * 10 + format[i] - 48;
+			info->prec = info->prec * 10 + format[i] - '0';
 	}
 	else if (format[i] == '*')
 	{
@@ -53,14 +53,14 @@ void	init_info(t_info *info)
 {
 	info->minus = 0;
 	info->zero = 0;
+	info->spec = '\0';
 	info->width = 0;
 	info->prec = -1;
-	info->type = 0;
 	info->nbr_base = 10;
 	info->nbr_sign = 1;
 }
 
-static int	parse_format(va_list ap, char *format)
+int	parse_format(va_list ap, char *format)
 {
 	int		i;
 	int		len;
@@ -74,19 +74,18 @@ static int	parse_format(va_list ap, char *format)
 	while (format[i])
 	{
 		while (format[i] && format[i] != '%')
-			ret += ft_putchar(format[i++]);
+			len += ft_putchar(format[i++]);
 		if (format[i] == '%')
 		{
 			init_info(info);
-			while (format[++i] && !(ft_strchr(FLAGS, format[i])))
+			while (format[++i] && !(ft_strchr(SPECS, format[i])))
 				check_info(ap, format, info, i);
-			info->type = format[i++];
-			if ((info->minus == 1 || info->prec > -1) && info->type != '%')
+			info->spec = format[i++];
+			if ((info->minus == 1 || info->prec > -1) && info->spec != '%')
 				info->zero = 0;
-			len += 
+			len += print_spec(ap, info);
 		}
 	}
-
 }
 
 int	ft_printf(const char *format, ...)

@@ -24,9 +24,19 @@ typedef struct s_info
 {
 	int		minus;
 	int		zero;
+	char	spec;
 	int		width;
 	int		prec;
-	char	type;
 	int		nbr_base;
 	int		nbr_sign;
 }			t_info;
+
+/*
+*** FT_PRINTF ****
+*/
+
+int		ft_printf(const char *format, ...);
+int		parse_format(va_list ap, char *format);
+void	init_info(t_info *info);
+void	check_info(va_list ap, char *format, t_info *info, int i);
+void	check_width_and_prec(va_list ap, char *format, t_info *info, int i);
