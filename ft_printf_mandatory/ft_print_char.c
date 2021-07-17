@@ -21,25 +21,24 @@ int	print_char(int c, t_info *info)
 		info->zero = 0;
 	if (info->minus == 1)
 		len += ft_putchar(c);
-	len += put_width(info->width, 1, info->zero);
+	len += put_width(info->width, info->zero);
 	if (info->minus == 0)
 		len += ft_putchar(c);
 	return (len);
 }
 
-int	put_width(int width, int len, int zero)
+int	put_width(int width, int zero)
 {
 	int	ret;
 
 	ret = 0;
-	while (len < width)
+	while (ret + 1 < width)
 	{
 		if (zero == 1)
 			ft_putchar('0');
 		else
 		{
 			ft_putchar(' ');
-			len++;
 			ret++;
 		}
 	}
