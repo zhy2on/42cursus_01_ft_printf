@@ -81,8 +81,6 @@ int	parse_format(va_list ap, char *format)
 			while (format[++i] && !(ft_strchr(SPECS, format[i])))
 				check_info(ap, format, info, i);
 			info->spec = format[i++];
-			if ((info->minus == 1 || info->prec > -1) && info->spec != '%')
-				info->pad_c = ' ';
 			len += print_spec(ap, info);
 		}
 	}
