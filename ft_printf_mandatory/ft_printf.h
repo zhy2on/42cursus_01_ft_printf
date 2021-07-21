@@ -23,7 +23,7 @@
 typedef struct s_info
 {
 	int		minus;
-	int		zero;
+	char	pad_c;
 	char	spec;
 	int		width;
 	int		prec;
@@ -40,3 +40,12 @@ int		parse_format(va_list ap, char *format);
 void	init_info(t_info *info);
 void	check_info(va_list ap, char *format, t_info *info, int i);
 void	check_width_and_prec(va_list ap, char *format, t_info *info, int i);
+
+/*
+*** FT_PRINT ***
+*/
+int		print_spec(va_list ap, t_info *info);
+int		print_char(int c, t_info *info);
+int		print_string(char *str, t_info *info);
+
+#endif

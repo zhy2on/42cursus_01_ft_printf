@@ -25,11 +25,12 @@ int	print_spec(va_list ap, t_info *info)
 		len = print_char('%', info);
 	else if (spec == 's')
 		len = print_string(va_arg(ap, char *), info);
+		/*
 	else if (spec == 'd' || spec == 'i')
 		len = print_nbr(va_arg(ap, int), info);
 	else if (spec == 'x' || spec == 'X' || spec == 'u')
 		len = print_nbr(va_arg(ap, unsigned int), info);
 	else if (spec == 'p')
-		len = print_nbr(va_arg(ap, unsigned long long), info);
+		len = print_nbr(va_arg(ap, unsigned long long), info);*/
 	return (len);
 }

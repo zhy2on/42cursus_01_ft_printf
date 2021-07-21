@@ -40,7 +40,7 @@ void	check_width_and_prec(va_list ap, char *format, t_info *info, int i)
 void	check_info(va_list ap, char *format, t_info *info, int i)
 {
 	if (format[i] == '0' && info->width == 0 && info->prec == -1)
-		info->zero = 1;
+		info->pad_c = '0';
 	else if (format[i] == '-')
 		info->minus = 1;
 	else if (format[i] == '.')
@@ -52,7 +52,7 @@ void	check_info(va_list ap, char *format, t_info *info, int i)
 void	init_info(t_info *info)
 {
 	info->minus = 0;
-	info->zero = 0;
+	info->pad_c = ' ';
 	info->spec = '\0';
 	info->width = 0;
 	info->prec = -1;
@@ -82,10 +82,11 @@ int	parse_format(va_list ap, char *format)
 				check_info(ap, format, info, i);
 			info->spec = format[i++];
 			if ((info->minus == 1 || info->prec > -1) && info->spec != '%')
-				info->zero = 0;
+				info->pad_c = ' ';
 			len += print_spec(ap, info);
 		}
 	}
+	return (len);
 }
 
 int	ft_printf(const char *format, ...)
