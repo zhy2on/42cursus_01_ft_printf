@@ -23,7 +23,7 @@ int	print_string(char *str, t_info *info)
 		str = "(null)";
 	if (info->prec == -1 || (size_t)info->prec > ft_strlen(str))
 		info->prec = ft_strlen(str);
-	if (info->prec == -1)
+	if (info->minus == 1)
 	{
 		info->pad_c = ' ';
 		while (i < info->prec && str[i])
@@ -31,7 +31,7 @@ int	print_string(char *str, t_info *info)
 	}
 	while (info->width-- > info->prec)
 		len += ft_putchar(info->pad_c);
-	if (info->prec > -1)
+	if (info->minus == 0)
 	{
 		while (i < info->prec && str[i])
 			len += ft_putchar(str[i++]);
