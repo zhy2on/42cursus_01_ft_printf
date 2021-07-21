@@ -20,9 +20,7 @@ RM			= rm -f
 LIBC		= ar -cr
 
 SRCS		=	./ft_printf.c \
-				./ft_print.c \
-				./ft_print_char.c \
-				./ft_print_string.c
+				./ft_print.c
 
 OBJS		= $(SRCS:.c=.o)
 

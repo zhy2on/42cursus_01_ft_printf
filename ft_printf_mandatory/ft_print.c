@@ -12,6 +12,49 @@
 
 #include "ft_printf.h"
 
+int	print_char(int c, t_info *info)
+{
+	int	len;
+
+	len = 0;
+	if (info->spec == '%' && info->minus == 1)
+		info->pad_c = ' ';
+	if (info->minus == 1)
+		len += ft_putchar(c);
+	while (info->width-- > info->prec)
+		len += ft_putchar(info->pad_c);
+	if (info->minus == 0)
+		len += ft_putchar(c);
+	return (len);
+}
+
+int	print_string(char *str, t_info *info)
+{
+	int		len;
+	int		i;
+
+	len = 0;
+	i = 0;
+	if (!str)
+		str = "(null)";
+	if (info->prec == -1 || (size_t)info->prec > ft_strlen(str))
+		info->prec = ft_strlen(str);
+	if (info->minus == 1)
+	{
+		info->pad_c = ' ';
+		while (i < info->prec && str[i])
+			len += ft_putchar(str[i++]);
+	}
+	while (info->width-- > info->prec)
+		len += ft_putchar(info->pad_c);
+	if (info->minus == 0)
+	{
+		while (i < info->prec && str[i])
+			len += ft_putchar(str[i++]);
+	}
+	return (len);
+}
+
 int	print_spec(va_list ap, t_info *info)
 {
 	int		len;
