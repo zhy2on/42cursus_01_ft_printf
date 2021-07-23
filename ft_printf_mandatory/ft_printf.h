@@ -51,9 +51,9 @@ int		print_spec(va_list ap, t_info *info);
 int		print_char(int c, t_info *info);
 int		print_string(char *str, t_info *info);
 int		print_nbr(unsigned long long nbr, t_info *info);
-int		put_nbr_base(unsigned long long nbr, char *base, t_info *info);
-int		print_nbr_prec(t_info *info);
+int		put_nbr_base(unsigned long long nbr, t_info *info);
+int		put_nbr_prec(t_info *info);
 void	put_nbr_sub(unsigned long long nbr, char *base, int len, int *ret);
-int		nbr_base_len(unsigned long long nbr, int base);
+int		nbr_base_len(unsigned long long nbr, char *base);
 
 #endif
