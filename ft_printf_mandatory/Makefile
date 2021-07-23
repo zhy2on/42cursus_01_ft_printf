@@ -20,11 +20,13 @@ RM			= rm -f
 LIBC		= ar -cr
 
 SRCS		=	./ft_printf.c \
-				./ft_print.c
+				./ft_print.c \
+				./ft_print_nbr.c
 
 OBJS		= $(SRCS:.c=.o)
 
 all : $(NAME)
+bonus : $(NAME)
 
 %.o : %.c
 	$(CC) $(CFLAG) -c $< -o $@
@@ -43,3 +45,5 @@ fclean : clean
 	make fclean -C $(LIBFT)
 
 re : fclean all
+
+.PHONY: all clean fclean re

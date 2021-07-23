@@ -19,6 +19,9 @@
 # include "./libft/includes/libft.h"
 
 # define SPECS "csdiupxX%"
+# define DECI "0123456789"
+# define HEXA "0123456789abcdef"
+# define HEXXA "0123456789ABCDEF"
 
 typedef struct s_info
 {
@@ -27,7 +30,8 @@ typedef struct s_info
 	char	spec;
 	int		width;
 	int		prec;
-	int		nbr_base;
+	char	*nbr_base;
+	int		nbr_len;
 	int		nbr_sign;
 }			t_info;
 
@@ -38,8 +42,7 @@ typedef struct s_info
 int		ft_printf(const char *format, ...);
 int		parse_format(va_list ap, char *format);
 void	init_info(t_info *info);
-void	check_info(va_list ap, char *format, t_info *info, int i);
-void	check_width_and_prec(va_list ap, char *format, t_info *info, int i);
+void	check_info(char *format, t_info *info, int i);
 
 /*
 *** FT_PRINT ***
@@ -47,5 +50,10 @@ void	check_width_and_prec(va_list ap, char *format, t_info *info, int i);
 int		print_spec(va_list ap, t_info *info);
 int		print_char(int c, t_info *info);
 int		print_string(char *str, t_info *info);
+int		print_nbr(unsigned long long nbr, t_info *info);
+int		put_nbr_base(unsigned long long nbr, char *base, t_info *info);
+int		print_nbr_prec(t_info *info);
+void	put_nbr_sub(unsigned long long nbr, char *base, int len, int *ret);
+int		nbr_base_len(unsigned long long nbr, int base);
 
 #endif
