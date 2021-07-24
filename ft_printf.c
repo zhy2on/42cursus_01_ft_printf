@@ -87,6 +87,7 @@ int	parse_format(va_list ap, char *format)
 			ret += print_spec(ap, info);
 		}
 	}
+	free(info);
 	return (ret);
 }
 
