@@ -77,6 +77,8 @@ void	set_nbr_info(unsigned long long nbr, t_info *info)
 	if (info->prec == -1 || info->prec < info->nbr_len)
 		info->prec = info->nbr_len;
 	info->width -= info->prec;
+	if (info->nbr_sign < 0)
+		info->width--;
 }
 
 int	print_nbr(unsigned long long nbr, t_info *info)
@@ -87,8 +89,6 @@ int	print_nbr(unsigned long long nbr, t_info *info)
 	set_nbr_info(nbr, info);
 	if (info->minus)
 		ret += put_nbr_base(nbr, info);
-	if (info->nbr_sign < 0)
-		info->width--;
 	if (info->nbr_sign < 0 && info->pad_c == '0')
 		ret += ft_putchar('-');
 	while (info->width-- > 0)
