@@ -63,16 +63,13 @@ int	put_nbr_base(unsigned long long nbr, t_info *info)
 	return (ret);
 }
 
-int	print_nbr(unsigned long long nbr, t_info *info)
+void	set_nbr_info(unsigned long long nbr, t_info *info)
 {
-	int	ret;
-
-	ret = 0;
 	if ((info->spec == 'd' || info->spec == 'i') && (int)nbr < 0)
 		info->nbr_sign = -1;
 	if (info->spec == 'x' || info->spec == 'p')
 		info->nbr_base = HEXA;
-	else if (info->spec == 'X' )
+	else if (info->spec == 'X')
 		info->nbr_base = HEXXA;
 	info->nbr_len = nbr_base_len(nbr, info);
 	if (info->prec > -1 || info->minus)
@@ -80,6 +77,14 @@ int	print_nbr(unsigned long long nbr, t_info *info)
 	if (info->prec == -1 || info->prec < info->nbr_len)
 		info->prec = info->nbr_len;
 	info->width -= info->prec;
+}
+
+int	print_nbr(unsigned long long nbr, t_info *info)
+{
+	int	ret;
+
+	ret = 0;
+	set_nbr_info(nbr, info);
 	if (info->minus)
 		ret += put_nbr_base(nbr, info);
 	if (info->nbr_sign < 0)
