@@ -11,7 +11,7 @@ int main()
 	printf("%5.2d\n", 1234);
 	ft_printf("%5.2d\n", 1234);
 	printf("%010d\n", -123);
-	ft_printf("%010d\n", -123);
+	ft_printf("%010d\n", -123); //error
 	printf("%010.4d\n", -123);
 	ft_printf("%010.4d\n", -123);
 	printf("%10d\n", -123);
