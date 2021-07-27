@@ -46,8 +46,6 @@ int	put_nbr_base(unsigned long long nbr, t_info *info)
 
 	ret = 0;
 	len = ft_strlen(info->nbr_base);
-	if (info->spec == 'p')
-		ret += ft_putchar('0') + ft_putchar('x');
 	if (!nbr)
 		return (ft_putchar('0'));
 	if (info->nbr_sign < 0)
@@ -81,6 +79,8 @@ void	set_nbr_info(unsigned long long nbr, t_info *info)
 	info->width -= info->prec;
 	if (info->nbr_sign < 0)
 		info->width--;
+	if (info->spec == 'p')
+		info->width -= 2;
 }
 
 int	print_nbr(unsigned long long nbr, t_info *info)
@@ -89,12 +89,16 @@ int	print_nbr(unsigned long long nbr, t_info *info)
 
 	ret = 0;
 	set_nbr_info(nbr, info);
+	if (info->minus && info->spec == 'p')
+		ret += ft_putchar('0') + ft_putchar('x');
 	if (info->minus)
 		ret += put_nbr_base(nbr, info);
 	if (info->nbr_sign < 0 && info->pad_c == '0')
 		ret += ft_putchar('-');
 	while (info->width-- > 0)
 		ret += ft_putchar(info->pad_c);
+	if (!info->minus && info->spec == 'p')
+		ret += ft_putchar('0') + ft_putchar('x');
 	if (!info->minus)
 		ret += put_nbr_base(nbr, info);
 	return (ret);
