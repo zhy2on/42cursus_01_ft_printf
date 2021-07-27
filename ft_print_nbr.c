@@ -97,7 +97,7 @@ int	print_nbr(unsigned long long nbr, t_info *info)
 		ret += ft_putchar('-');
 	while (info->width-- > 0)
 		ret += ft_putchar(info->pad_c);
-	if (!info->minus && info->spec == 'p')
+	if (!(info->minus || info->pad_c == '0') && info->spec == 'p')
 		ret += ft_putchar('0') + ft_putchar('x');
 	if (!info->minus)
 		ret += put_nbr_base(nbr, info);
