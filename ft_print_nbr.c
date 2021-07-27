@@ -89,7 +89,7 @@ int	print_nbr(unsigned long long nbr, t_info *info)
 
 	ret = 0;
 	set_nbr_info(nbr, info);
-	if (info->minus && info->spec == 'p')
+	if ((info->minus || info->pad_c == '0') && info->spec == 'p')
 		ret += ft_putchar('0') + ft_putchar('x');
 	if (info->minus)
 		ret += put_nbr_base(nbr, info);
