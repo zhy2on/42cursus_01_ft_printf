@@ -40,7 +40,7 @@ typedef struct s_info
 */
 
 int		ft_printf(const char *format, ...);
-int		parse_format(va_list ap, char *format);
+int		parse_format(va_list ap, char **format, t_info *info);
 void	init_info(t_info *info);
 void	check_info(char *format, t_info *info, int i);
 int		print_spec(va_list ap, t_info *info);
