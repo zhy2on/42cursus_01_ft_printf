@@ -46,6 +46,8 @@ int	put_nbr_base(unsigned long long nbr, t_info *info)
 
 	ret = 0;
 	len = ft_strlen(info->nbr_base);
+	if (info->spec == 'p')
+		ret += ft_putchar('0') + ft_putchar('x');
 	if (!nbr)
 		return (ft_putchar('0'));
 	if (info->nbr_sign < 0)
