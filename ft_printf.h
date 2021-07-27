@@ -16,7 +16,7 @@
 # include <stdarg.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include "./libft/includes/libft.h"
+# include "./libft/libft.h"
 
 # define SPECS "csdiupxX%"
 # define DECI "0123456789"

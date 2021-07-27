@@ -63,20 +63,17 @@ SRCS_BN = ft_lstnew.c		\
 		  ft_lstmap.c		\
 		  ft_lstdelone.c	\
 
-HEADER = includes
-FOLDER = srcs
-
-SRCS = 	$(addprefix $(FOLDER)/, $(SRCS_1))			\
-	  	$(addprefix $(FOLDER)/, $(SRCS_2))
+SRCS = 	$(SRCS_1)	\
+	  	$(SRCS_2)
 
 OBJS =  $(SRCS:.c=.o)
 
-OBJS_BONUS = $(addprefix $(FOLDER)/, $(SRCS_BN:.c=.o))
+OBJS_BONUS = $(SRCS_BN:.c=.o)
 
 all : $(NAME)
 
 %.o : %.c
-	$(CC) $(CFLAG) -c $< -o $@ -I $(HEADER)
+	$(CC) $(CFLAG) -c $< -o $@
 
 clean :
 	rm -f $(OBJS) $(OBJS_BONUS)

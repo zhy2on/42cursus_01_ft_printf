@@ -1,0 +1,8 @@
+a.out
+*.a
+test.c
+ttest.c
+pft.c
+pft/
+printf_lover*
+main.c

@@ -19,9 +19,7 @@ CFLAG		= -Wall -Wextra -Werror
 RM			= rm -f
 LIBC		= ar -cr
 
-SRCS		=	./ft_printf.c \
-				./ft_print.c \
-				./ft_print_nbr.c
+SRCS		=	./ft_printf.c ./ft_print.c ./ft_print_nbr.c
 
 OBJS		= $(SRCS:.c=.o)
 
