@@ -66,6 +66,7 @@ void	set_nbr_info(unsigned long long nbr, t_info *info)
 	{
 		info->nbr_sign = -1;
 		info->sign_c = '-';
+		info->space = 0;
 	}
 	if (info->spec != 'd' && info->spec != 'i')
 	{
