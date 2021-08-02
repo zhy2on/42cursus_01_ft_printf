@@ -34,20 +34,20 @@ int	print_spec(va_list ap, t_info *info)
 	return (ret);
 }
 
-void	check_info(char *format, t_info *info, int i)
+void	check_info(char *format, t_info *info)
 {
-	if (format[i] == '0' && !info->width && info->prec == -1)
+	if (*format == '0' && !info->width && info->prec == -1)
 		info->pad_c = '0';
-	else if (format[i] == '-')
+	else if (*format == '-')
 		info->minus = 1;
-	else if (format[i] == '.')
+	else if (*format == '.')
 		info->prec = 0;
-	else if (ft_isdigit(format[i]))
+	else if (ft_isdigit(*format))
 	{
 		if (info->prec == -1)
-			info->width = info->width * 10 + format[i] - '0';
+			info->width = info->width * 10 + *format - '0';
 		else
-			info->prec = info->prec * 10 + format[i] - '0';
+			info->prec = info->prec * 10 + *format - '0';
 	}
 }
 
@@ -82,7 +82,7 @@ int	parse_format(va_list ap, char *format)
 		{
 			init_info(info);
 			while (format[++i] && !(ft_strchr(SPECS, format[i])))
-				check_info(format, info, i);
+				check_info(format + i, info);
 			info->spec = format[i++];
 			ret += print_spec(ap, info);
 		}
