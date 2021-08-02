@@ -29,6 +29,7 @@ typedef struct s_info
 	int		plus;
 	char	pad_c;
 	char	sign_c;
+	char	hex_c;
 	char	spec;
 	int		width;
 	int		prec;

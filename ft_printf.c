@@ -30,7 +30,10 @@ int	print_spec(va_list ap, t_info *info)
 	else if (spec == 'u' || spec == 'x' || spec == 'X')
 		ret = print_nbr(va_arg(ap, unsigned int), info);
 	else if (spec == 'p')
+	{
+		info->hex_c = 'x';
 		ret = print_nbr(va_arg(ap, unsigned long long), info);
+	}
 	return (ret);
 }
 
@@ -42,6 +45,8 @@ void	check_info(char *format, t_info *info)
 		info->minus = 1;
 	else if (*format == '+')
 		info->plus = 1;
+	else if (*format == '#')
+		info->hex_c = 'x';
 	else if (*format == '.')
 		info->prec = 0;
 	else if (ft_isdigit(*format))
@@ -59,6 +64,7 @@ void	init_info(t_info *info)
 	info->plus = 0;
 	info->pad_c = ' ';
 	info->sign_c = '+';
+	info->hex_c = '\0';
 	info->spec = '\0';
 	info->width = 0;
 	info->prec = -1;
