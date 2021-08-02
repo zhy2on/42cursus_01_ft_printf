@@ -63,7 +63,7 @@ void	init_info(t_info *info)
 	info->nbr_sign = 1;
 }
 
-int	parse_format(va_list ap, char **format, t_info *info)
+int	parse_format(va_list ap, char **format)
 {
 	int		i;
 	int		ret;
