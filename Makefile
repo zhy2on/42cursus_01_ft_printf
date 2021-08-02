@@ -6,7 +6,7 @@
 #    By: jihoh <jihoh@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/18 17:52:28 by jihoh             #+#    #+#              #
-#    Updated: 2021/07/18 17:52:29 by jihoh            ###   ########.fr        #
+#    Updated: 2021/08/03 01:54:42 by jihoh            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,12 +14,12 @@ NAME		= libftprintf.a
 LIBFT		= libft
 LIBFT_LIB	= libft.a
 
-CC			= gcc
+CC		= gcc
 CFLAG		= -Wall -Wextra -Werror
-RM			= rm -f
+RM		= rm -f
 LIBC		= ar -cr
 
-SRCS		=	./ft_printf.c ./ft_print.c ./ft_print_nbr.c
+SRCS		= ./ft_printf.c ./ft_print.c ./ft_print_nbr.c
 
 OBJS		= $(SRCS:.c=.o)
 
