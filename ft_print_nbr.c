@@ -73,7 +73,7 @@ void	set_nbr_info(unsigned long long nbr, t_info *info)
 		info->plus = 0;
 		info->space = 0;
 	}
-	if ((info->spec != 'x' && info->spec != 'X' && info->spec != 'p') || !nbr)
+	if (((info->spec != 'x' && info->spec != 'X') || nbr == 0) && info->spec != 'p')
 		info->hex_c = '\0';
 	if (info->hex_c && info->spec == 'X')
 		info->hex_c = 'X';
