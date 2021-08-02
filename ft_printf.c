@@ -40,6 +40,8 @@ void	check_info(char *format, t_info *info)
 		info->pad_c = '0';
 	else if (*format == '-')
 		info->minus = 1;
+	else if (*format == '+')
+		info->plus = 1;
 	else if (*format == '.')
 		info->prec = 0;
 	else if (ft_isdigit(*format))
@@ -54,7 +56,9 @@ void	check_info(char *format, t_info *info)
 void	init_info(t_info *info)
 {
 	info->minus = 0;
+	info->plus = 0;
 	info->pad_c = ' ';
+	info->sign_c = '+';
 	info->spec = '\0';
 	info->width = 0;
 	info->prec = -1;

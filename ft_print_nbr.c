@@ -52,6 +52,8 @@ int	put_nbr_base(unsigned long long nbr, t_info *info)
 			ret += ft_putchar('-');
 		nbr *= -1;
 	}
+	else if (info->plus && info->pad_c != '0')
+		ret += ft_putchar('+');
 	if (info->prec > -1)
 	{
 		while (info->prec-- > info->nbr_len)
@@ -67,6 +69,10 @@ void	set_nbr_info(unsigned long long nbr, t_info *info)
 {
 	if ((info->spec == 'd' || info->spec == 'i') && (int)nbr < 0)
 		info->nbr_sign = -1;
+	if (info->spec != 'd' && info->spec != 'i')
+		info->plus = 0;
+	if (info->nbr_sign < 0)
+		info->sign_c = '-';
 	if (info->spec == 'x' || info->spec == 'p')
 		info->nbr_base = HEXA;
 	else if (info->spec == 'X')
@@ -93,8 +99,8 @@ int	print_nbr(unsigned long long nbr, t_info *info)
 		ret += ft_putchar('0') + ft_putchar('x');
 	if (info->minus && (nbr || info->prec))
 		ret += put_nbr_base(nbr, info);
-	if (info->nbr_sign < 0 && info->pad_c == '0')
-		ret += ft_putchar('-');
+	if ((info->nbr_sign < 0 || info->plus) && info->pad_c == '0')
+		ret += ft_putchar(info->sign_c);
 	while (info->width-- > 0)
 		ret += ft_putchar(info->pad_c);
 	if (!(info->minus || info->pad_c == '0') && info->spec == 'p')
