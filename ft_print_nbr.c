@@ -46,8 +46,6 @@ int	put_nbr_base(unsigned long long nbr, t_info *info)
 
 	ret = 0;
 	len = ft_strlen(info->nbr_base);
-	if (!nbr)
-		return (ft_putchar('0'));
 	if (info->nbr_sign < 0)
 	{
 		if (info->pad_c != '0')
@@ -59,6 +57,8 @@ int	put_nbr_base(unsigned long long nbr, t_info *info)
 		while (info->prec-- > info->nbr_len)
 			ret += ft_putchar('0');
 	}
+	if (!nbr)
+		return (ret + ft_putchar('0'));
 	put_nbr_sub(nbr, info->nbr_base, len, &ret);
 	return (ret);
 }
