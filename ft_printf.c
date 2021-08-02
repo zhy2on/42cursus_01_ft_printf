@@ -47,6 +47,8 @@ void	check_info(char *format, t_info *info)
 		info->plus = 1;
 	else if (*format == '#')
 		info->hex_c = 'x';
+	else if (*format == ' ')
+		info->space = 1;
 	else if (*format == '.')
 		info->prec = 0;
 	else if (ft_isdigit(*format))
@@ -62,6 +64,7 @@ void	init_info(t_info *info)
 {
 	info->minus = 0;
 	info->plus = 0;
+	info->space = 0;
 	info->pad_c = ' ';
 	info->sign_c = '+';
 	info->hex_c = '\0';

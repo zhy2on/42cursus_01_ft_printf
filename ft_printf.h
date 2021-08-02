@@ -27,6 +27,7 @@ typedef struct s_info
 {
 	int		minus;
 	int		plus;
+	int		space;
 	char	pad_c;
 	char	sign_c;
 	char	hex_c;
@@ -59,6 +60,7 @@ int		print_string(char *str, t_info *info);
 */
 int		print_nbr(unsigned long long nbr, t_info *info);
 void	set_nbr_info(unsigned long long nbr, t_info *info);
+void	set_nbr_info_sub(unsigned long long nbr, t_info *info);
 int		put_nbr_base(unsigned long long nbr, t_info *info);
 void	put_nbr_sub(unsigned long long nbr, char *base, int len, int *ret);
 int		nbr_base_len(unsigned long long nbr, t_info *info);

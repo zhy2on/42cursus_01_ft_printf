@@ -12,25 +12,6 @@
 
 #include "ft_printf.h"
 
-int	nbr_base_len(unsigned long long nbr, t_info *info)
-{
-	int	i;
-	int	n;
-
-	if (!nbr)
-		return (1);
-	if (info->nbr_sign < 0)
-		nbr *= -1;
-	i = 0;
-	n = ft_strlen(info->nbr_base);
-	while (nbr)
-	{
-		nbr /= n;
-		i++;
-	}
-	return (i);
-}
-
 void	put_nbr_sub(unsigned long long nbr, char *base, int len, int *ret)
 {
 	if (!nbr)
@@ -65,22 +46,8 @@ int	put_nbr_base(unsigned long long nbr, t_info *info)
 	return (ret);
 }
 
-void	set_nbr_info(unsigned long long nbr, t_info *info)
+void	set_nbr_info_sub(unsigned long long nbr, t_info *info)
 {
-	if ((info->spec == 'd' || info->spec == 'i') && (int)nbr < 0)
-		info->nbr_sign = -1;
-	if (info->spec != 'd' && info->spec != 'i')
-		info->plus = 0;
-	if (info->nbr_sign < 0)
-		info->sign_c = '-';
-	if ((info->spec != 'x' && info->spec != 'X' && info->spec != 'p') || !nbr)
-		info->hex_c = '\0';
-	if (info->hex_c && info->spec == 'X')
-		info->hex_c = 'X';
-	if (info->spec == 'x' || info->spec == 'p')
-		info->nbr_base = HEXA;
-	else if (info->spec == 'X')
-		info->nbr_base = HEXXA;
 	info->nbr_len = nbr_base_len(nbr, info);
 	if (info->prec > -1 || info->minus)
 		info->pad_c = ' ';
@@ -93,12 +60,37 @@ void	set_nbr_info(unsigned long long nbr, t_info *info)
 		info->width -= 2;
 }
 
+void	set_nbr_info(unsigned long long nbr, t_info *info)
+{
+	if ((info->spec == 'd' || info->spec == 'i') && (int)nbr < 0)
+	{
+		info->nbr_sign = -1;
+		info->sign_c = '-';
+	}
+	if (info->spec != 'd' && info->spec != 'i')
+	{
+		info->plus = 0;
+		info->space = 0;
+	}
+	if ((info->spec != 'x' && info->spec != 'X' && info->spec != 'p') || !nbr)
+		info->hex_c = '\0';
+	if (info->hex_c && info->spec == 'X')
+		info->hex_c = 'X';
+	if (info->spec == 'x' || info->spec == 'p')
+		info->nbr_base = HEXA;
+	else if (info->spec == 'X')
+		info->nbr_base = HEXXA;
+	set_nbr_info_sub(nbr, info);
+}
+
 int	print_nbr(unsigned long long nbr, t_info *info)
 {
 	int	ret;
 
 	ret = 0;
 	set_nbr_info(nbr, info);
+	if (info->space && (info->width <= 0))
+		ret += ft_putchar(' ');
 	if ((info->minus || info->pad_c == '0') && (info->hex_c))
 		ret += ft_putchar('0') + ft_putchar(info->hex_c);
 	if (info->minus && (nbr || info->prec))

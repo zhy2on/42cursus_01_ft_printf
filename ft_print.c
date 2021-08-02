@@ -12,6 +12,25 @@
 
 #include "ft_printf.h"
 
+int	nbr_base_len(unsigned long long nbr, t_info *info)
+{
+	int	i;
+	int	n;
+
+	if (!nbr)
+		return (1);
+	if (info->nbr_sign < 0)
+		nbr *= -1;
+	i = 0;
+	n = ft_strlen(info->nbr_base);
+	while (nbr)
+	{
+		nbr /= n;
+		i++;
+	}
+	return (i);
+}
+
 int	print_char(int c, t_info *info)
 {
 	int	ret;
