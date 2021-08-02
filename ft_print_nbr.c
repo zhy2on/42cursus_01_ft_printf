@@ -74,7 +74,7 @@ void	set_nbr_info(unsigned long long nbr, t_info *info)
 	info->nbr_len = nbr_base_len(nbr, info);
 	if (info->prec > -1 || info->minus)
 		info->pad_c = ' ';
-	if (!nbr && info->prec <= 0)
+	if (!nbr && !info->prec)
 		info->prec = 0;
 	else if (info->prec == -1 || info->prec < info->nbr_len)
 		info->prec = info->nbr_len;
