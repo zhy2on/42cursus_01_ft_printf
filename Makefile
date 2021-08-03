@@ -20,12 +20,11 @@ RM		= rm -f
 LIBC		= ar -cr
 
 SRCS		= ./ft_printf.c ./ft_print.c ./ft_print_nbr.c
-BSRCS		= ./ft_printf_bonus.c ./ft_print_bonus.c ./ft_print_nbr_bonus.c
 
 OBJS		= $(SRCS:.c=.o)
-BOBJS		= $(BSRCS:.c=.o)
 
 all : $(NAME)
+bonus : $(NAME)
 
 %.o : %.c
 	$(CC) $(CFLAG) -c $< -o $@
@@ -35,13 +34,8 @@ $(NAME) : $(OBJS)
 	cp $(LIBFT)/$(LIBFT_LIB) $(NAME)
 	$(LIBC) $(NAME) $(OBJS)
 
-bonus : $(BOBJS)
-	make all -C $(LIBFT)/
-	cp $(LIBFT)/$(LIBFT_LIB) $(NAME)
-	$(LIBC) $(NAME) $(BOBJS)
-
 clean :
-	$(RM) $(OBJS) $(BOBJS)
+	$(RM) $(OBJS)
 	make clean -C $(LIBFT)
 
 fclean : clean
