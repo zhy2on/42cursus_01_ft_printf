@@ -51,12 +51,13 @@ void	set_nbr_info_sub(unsigned long long nbr, t_info *info)
 	info->nbr_len = nbr_base_len(nbr, info);
 	if (info->prec > -1 || info->minus)
 		info->pad_c = ' ';
-	if ((nbr || info->prec) && (info->prec == -1 || info->prec < info->nbr_len))
+	if ((nbr || info->prec > 0)
+		&& (info->prec == -1 || info->prec < info->nbr_len))
 		info->prec = info->nbr_len;
 	info->width -= info->prec;
 	if (info->nbr_sign < 0)
 		info->width--;
-	if (info->spec == 'p')
+	if (info->spec == 'p' || info->hex_c)
 		info->width -= 2;
 }
 
@@ -92,7 +93,10 @@ int	print_nbr(unsigned long long nbr, t_info *info)
 	ret = 0;
 	set_nbr_info(nbr, info);
 	if (info->space && (info->width <= 0))
+	{
 		ret += ft_putchar(' ');
+		info->width--;
+	}
 	if ((info->minus || info->pad_c == '0') && (info->hex_c))
 		ret += ft_putchar('0') + ft_putchar(info->hex_c);
 	if (info->minus && (nbr || info->prec))
