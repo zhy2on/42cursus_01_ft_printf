@@ -36,6 +36,8 @@ int	print_char(int c, t_info *info)
 	int	ret;
 
 	ret = 0;
+	if (info->spec == '%' && info->minus == 1)
+		info->pad_c = ' ';
 	if (info->minus)
 		ret += ft_putchar(c);
 	while (info->width-- > 1)
@@ -58,6 +60,7 @@ int	print_string(char *str, t_info *info)
 		info->prec = ft_strlen(str);
 	if (info->minus)
 	{
+		info->pad_c = ' ';
 		while (i < info->prec && str[i])
 			ret += ft_putchar(str[i++]);
 	}
