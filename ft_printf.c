@@ -80,27 +80,23 @@ int	parse_format(va_list ap, char *format)
 {
 	int		i;
 	int		ret;
-	t_info	*info;
+	t_info	info;
 
 	i = 0;
 	ret = 0;
-	info = (t_info *)malloc(sizeof(t_info));
-	if (!info)
-		return (-1);
 	while (format[i])
 	{
 		while (format[i] && format[i] != '%')
 			ret += ft_putchar(format[i++]);
 		if (format[i] == '%')
 		{
-			init_info(info);
+			init_info(&info);
 			while (format[++i] && !(ft_strchr(SPECS, format[i])))
-				check_info(format + i, info);
-			info->spec = format[i++];
-			ret += print_spec(ap, info);
+				check_info(format + i, &info);
+			info.spec = format[i++];
+			ret += print_spec(ap, &info);
 		}
 	}
-	free(info);
 	return (ret);
 }
 

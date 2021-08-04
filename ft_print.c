@@ -36,7 +36,7 @@ int	print_char(int c, t_info *info)
 	int	ret;
 
 	ret = 0;
-	if (info->spec == '%' && info->minus == 1)
+	if (info->spec == '%' && info->minus)
 		info->pad_c = ' ';
 	if (info->minus)
 		ret += ft_putchar(c);
