@@ -14,8 +14,6 @@
 # define FT_PRINTF_H
 
 # include <stdarg.h>
-# include <unistd.h>
-# include <stdlib.h>
 # include "./libft/libft.h"
 
 # define SPECS "csdiupxX%"
