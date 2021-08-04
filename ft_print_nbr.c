@@ -57,7 +57,7 @@ void	set_nbr_info_sub(unsigned long long nbr, t_info *info)
 	info->width -= info->prec;
 	if (info->nbr_sign < 0 || info->plus)
 		info->width--;
-	if (info->spec == 'p' || info->hex_c)
+	if (info->hex_c)
 		info->width -= 2;
 }
 
